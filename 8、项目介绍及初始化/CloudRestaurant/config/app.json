@@ -1,0 +1,6 @@
+{
+  "app_name": "cloudrestaurant",
+  "app_mode": "debug",
+  "app_host": "localhost",
+  "app_port": "8090"
+}
