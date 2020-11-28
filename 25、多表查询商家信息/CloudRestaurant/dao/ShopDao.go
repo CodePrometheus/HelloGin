@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"CloudRestaurant/tool"
 	"CloudRestaurant/model"
+	"CloudRestaurant/tool"
 )
 
 type ShopDao struct {
@@ -38,12 +38,12 @@ func (shopDao *ShopDao) QueryShops(longitude, latitude float64, keyword string) 
 	var shops []model.Shop
 
 	if keyword == "" {
-		err := shopDao.Engine.Where(" longitude > ? and longitude < ? and latitude > ? and latitude < ?  and status = 1 ", longitude-DEFAULT_RANGE, longitude+DEFAULT_RANGE, latitude-DEFAULT_RANGE, latitude+DEFAULT_RANGE).Find(&shops)
+		err := shopDao.Engine.Where(" longitude > ? and longitude < ? and latitude > ? and latitude < ?  and status = 1", longitude-DEFAULT_RANGE, longitude+DEFAULT_RANGE, latitude-DEFAULT_RANGE, latitude+DEFAULT_RANGE).Find(&shops)
 		if err != nil {
 			return nil
 		}
 	} else {
-		err := shopDao.Engine.Where(" longitude > ? and longitude < ? and latitude > ? and latitude < ? and name like ？ and status = 1", longitude-DEFAULT_RANGE, longitude+DEFAULT_RANGE, latitude-DEFAULT_RANGE, latitude+DEFAULT_RANGE, keyword).Find(&shops)
+		err := shopDao.Engine.Where(" longitude > ? and longitude < ? and latitude > ? and latitude < ? and name like ? and status = 1", longitude-DEFAULT_RANGE, longitude+DEFAULT_RANGE, latitude-DEFAULT_RANGE, latitude+DEFAULT_RANGE, keyword).Find(&shops)
 		if err != nil {
 			return nil
 		}
