@@ -10,16 +10,12 @@ import (
 type ShopController struct {
 }
 
-/**
- * shop模块的路由解析
- */
+// Router shop模块的路由解析
 func (sc *ShopController) Router(app *gin.Engine) {
 	app.GET("/api/shops", sc.GetShopList)
 }
 
-/**
- * 获取商铺列表
- */
+// GetShopList 获取商铺列表
 func (sc *ShopController) GetShopList(context *gin.Context) {
 
 	longitude := context.Query("longitude")

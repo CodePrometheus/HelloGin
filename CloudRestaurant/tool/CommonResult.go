@@ -10,7 +10,7 @@ const (
 	FAILED  int = 1 //操作失败
 )
 
-//普通成功返回
+// Success 普通成功返回
 func Success(ctx *gin.Context, v interface{}) {
 	ctx.JSON(http.StatusOK, map[string]interface{}{
 		"code": SUCCESS,
@@ -19,7 +19,7 @@ func Success(ctx *gin.Context, v interface{}) {
 	})
 }
 
-//普通的操作失败返回
+// Failed 普通的操作失败返回
 func Failed(ctx *gin.Context, v interface{}) {
 	ctx.JSON(http.StatusOK, map[string]interface{}{
 		"code": FAILED,

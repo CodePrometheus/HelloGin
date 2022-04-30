@@ -32,9 +32,11 @@ func (ms *MemberService) Login(name string, password string) *model.Member {
 	//1、使用用户名 + 密码 查询用户信息 如果存在用户 直接返回
 	md := dao.MemberDao{tool.DbEngine}
 	member := md.Query(name, password)
+	fmt.Println(member.Id)
 	if member.Id != 0 {
 		return member
 	}
+	fmt.Println("sss2")
 
 	//2、用户信息不存在，作为新用户保存到数据库中
 	user := model.Member{}
@@ -44,7 +46,7 @@ func (ms *MemberService) Login(name string, password string) *model.Member {
 
 	result := md.InsertMember(user)
 	user.Id = result
-
+	fmt.Println("user: ", &user)
 	return &user
 }
 

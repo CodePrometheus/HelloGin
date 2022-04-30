@@ -35,7 +35,7 @@ type DatabaseConfig struct {
 	ShowSql  bool   `json:"show_sql"`
 }
 
-//Redis属性定义
+// RedisConfig Redis 属性定义
 type RedisConfig struct {
 	Addr     string `json:"addr"`
 	Port     string `json:"port"`

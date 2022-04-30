@@ -1,8 +1,6 @@
 package model
 
-/**
- * 商家结构体/商户
- */
+// Shop 商家结构体/商户
 type Shop struct {
 	//id
 	Id int64 `xorm:"pk autoincr" json:"id"`
@@ -24,9 +22,7 @@ type Shop struct {
 	//店铺图标
 	ImagePath string `xorm:"varchar(255)" json:"image_path"`
 
-	//
-	IsNew bool `xorm:"bool" json:"is_new"`
-	//
+	IsNew     bool `xorm:"bool" json:"is_new"`
 	IsPremium bool `xorm:"bool" json:"is_premium"`
 
 	//商铺评分

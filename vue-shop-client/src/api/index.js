@@ -60,4 +60,4 @@ export const reqShopRatings = () => ajax('/ratings')
  */
 export const reqShopGoods = () => ajax('/goods')
 
-export const uploadFile = (formData) => ajax(BASE_URL + '/upload/avator', formData, 'POST')
+export const uploadFile = (formData) => ajax(BASE_URL + '/upload/avatar', formData, 'POST')

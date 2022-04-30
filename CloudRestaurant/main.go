@@ -32,22 +32,22 @@ func main() {
 		panic(err.Error())
 	}
 
-	//实例化数据库
+	// 实例化数据库
 	_, err = tool.OrmEngine(cfg)
 	if err != nil {
 		logger.Error(err.Error())
 		return
 	}
 
-	//初始化redis配置
+	// 初始化redis配置
 	tool.InitRedisStore()
 
 	app := gin.Default()
 
-	//设置全局跨域访问
+	// 设置全局跨域访问
 	app.Use(Cors())
 
-	//集成session
+	// 集成session
 	tool.InitSession(app)
 
 	registerRouter(app)
@@ -55,7 +55,7 @@ func main() {
 	app.Run(cfg.AppHost + ":" + cfg.AppPort)
 }
 
-//路由设置
+// 路由设置
 func registerRouter(router *gin.Engine) {
 	new(controller.HelloController).Router(router)
 	new(controller.MemberController).Router(router)
@@ -64,7 +64,7 @@ func registerRouter(router *gin.Engine) {
 	new(controller.GoodController).Router(router)
 }
 
-//跨域访问：cross  origin resource share
+// Cors 跨域访问：cross  origin resource share
 func Cors() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		method := context.Request.Method
@@ -95,7 +95,7 @@ func Cors() gin.HandlerFunc {
 			context.JSON(http.StatusOK, "Options Request!")
 		}
 
-		//处理请求
+		// 处理请求
 		context.Next()
 	}
 }

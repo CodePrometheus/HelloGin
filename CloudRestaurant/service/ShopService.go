@@ -9,9 +9,7 @@ import (
 type ShopService struct {
 }
 
-/**
- * 查询商铺列表数据
- */
+// ShopList 查询商铺列表数据
 func (shopService *ShopService) ShopList(long, lat string) []model.Shop {
 	longitude, err := strconv.ParseFloat(long, 10)
 	if err != nil {

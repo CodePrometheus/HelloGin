@@ -24,18 +24,17 @@ func (mc *MemberController) Router(engine *gin.Engine) {
 
 	engine.GET("/api/captcha", mc.captcha)
 
-	//postman测试
 	engine.POST("/api/vertifycha", mc.vertifyCaptcha)
 
-	//login_pwd
+	// login_pwd
 	engine.POST("/api/login_pwd", mc.nameLogin)
 
-	//头像上传
-	engine.POST("/api/upload/avator", mc.uploadAvator)
+	// 头像上传
+	engine.POST("/api/upload/avatar", mc.uploadAvatar)
 }
 
-//头像上传
-func (mc *MemberController) uploadAvator(context *gin.Context) {
+// 头像上传
+func (mc *MemberController) uploadAvatar(context *gin.Context) {
 
 	//1、解析上传的参数：file、user_id
 	userId := context.PostForm("user_id") //用户id
@@ -96,7 +95,7 @@ func (mc *MemberController) nameLogin(context *gin.Context) {
 
 	//2、验证验证码
 	validate := tool.VertifyCaptcha(loginParam.Id, loginParam.Value)
-	if !validate {
+	if validate {
 		tool.Failed(context, "验证码不正确，请重新验证")
 		return
 	}
