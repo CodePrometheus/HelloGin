@@ -25,7 +25,6 @@ type Value struct {
 }
 
 func main() {
-
 	cfg, err := tool.ParseConfig("./config/app.json")
 
 	if err != nil {

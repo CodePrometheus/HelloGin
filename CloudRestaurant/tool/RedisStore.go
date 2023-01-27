@@ -2,7 +2,6 @@ package tool
 
 import (
 	"github.com/go-redis/redis"
-	"github.com/mojocn/base64Captcha"
 	"log"
 	"time"
 )
@@ -22,13 +21,11 @@ func InitRedisStore() *RedisStore {
 	})
 
 	RediStore = RedisStore{client: client}
-	base64Captcha.SetCustomStore(&RediStore)
-
 	return &RediStore
 }
 
 // set
-func (rs *RedisStore) Set(id string, value string) {
+func (rs RedisStore) Set(id string, value string) {
 	err := rs.client.Set(id, value, time.Minute*10).Err()
 	if err != nil {
 		log.Println(err)
@@ -36,7 +33,7 @@ func (rs *RedisStore) Set(id string, value string) {
 }
 
 // get
-func (rs *RedisStore) Get(id string, clear bool) string {
+func (rs RedisStore) Get(id string, clear bool) string {
 	val, err := rs.client.Get(id).Result()
 	if err != nil {
 		log.Println(err)
@@ -50,4 +47,10 @@ func (rs *RedisStore) Get(id string, clear bool) string {
 		}
 	}
 	return val
+}
+
+// verify a capt
+func (r RedisStore) Verify(id, answer string, clear bool) bool {
+	v := r.Get(id, clear)
+	return v == answer
 }

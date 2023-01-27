@@ -82,7 +82,7 @@ func (mc *MemberController) uploadAvatar(context *gin.Context) {
 	tool.Failed(context, "上传失败")
 }
 
-//用户名+密码、验证码登录
+// 用户名+密码、验证码登录
 func (mc *MemberController) nameLogin(context *gin.Context) {
 
 	//1、解析用户登录传递参数
@@ -94,7 +94,7 @@ func (mc *MemberController) nameLogin(context *gin.Context) {
 	}
 
 	//2、验证验证码
-	validate := tool.VertifyCaptcha(loginParam.Id, loginParam.Value)
+	validate := tool.VerifyCaptcha(loginParam.Id, loginParam.Value)
 	if validate {
 		tool.Failed(context, "验证码不正确，请重新验证")
 		return
@@ -118,12 +118,12 @@ func (mc *MemberController) nameLogin(context *gin.Context) {
 	tool.Failed(context, "登录失败")
 }
 
-//生成验证码
+// 生成验证码
 func (mc *MemberController) captcha(context *gin.Context) {
 	tool.GenerateCaptcha(context)
 }
 
-//验证验证码是否正确
+// 验证验证码是否正确
 func (mc *MemberController) vertifyCaptcha(context *gin.Context) {
 	var captcha tool.CaptchaResult
 	err := tool.Decode(context.Request.Body, &captcha)
@@ -132,7 +132,7 @@ func (mc *MemberController) vertifyCaptcha(context *gin.Context) {
 		return
 	}
 
-	result := tool.VertifyCaptcha(captcha.Id, captcha.VertifyValue)
+	result := tool.VerifyCaptcha(captcha.Id, captcha.VerifyValue)
 	if result {
 		fmt.Println("验证通过")
 	} else {
@@ -159,7 +159,7 @@ func (mc *MemberController) sendSmsCode(context *gin.Context) {
 	tool.Failed(context, "发送失败")
 }
 
-//手机号+短信  登录的方法
+// 手机号+短信  登录的方法
 func (mc *MemberController) smsLogin(context *gin.Context) {
 
 	var smsLoginParam param.SmsLoginParam
